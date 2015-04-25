@@ -1,0 +1,84 @@
+iframe, #player, #videoList div span {
+	display: block;
+}
+
+.arrows, iframe, #player, #videoContainer {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+body, #videoContainer {
+	padding: 0px;
+}
+
+body {
+	background-image: url('gplaypattern.png');
+	height: 100%;
+	margin: 0px;
+	width: 100%;
+}
+
+#videoContainer{
+	height: 97vh;
+	margin-bottom: 5px;
+	margin-top: 10px;
+	overflow: hidden;
+	width: 70%;
+}
+
+#player {
+	height: 75%;
+	width: 100%;
+}
+
+#videoList {
+	background-image: url('mochaGrunge.png');
+	left: 0;
+	position: relative;
+	transition: all 1s; 	
+	-moz-transition: all 1s; 
+	-webkit-transition: all 1s;  
+	-ms-transition: all 1s;  
+	-o-transition: all 1s;  
+}
+
+#videoList div, .arrows {
+	text-align: center;
+}
+
+#videoList div {
+	display: inline-block;	
+	padding: 15px;
+	width: 150px;
+}
+
+#videoList div img {
+	width: 128px;
+	height: 97px;
+	padding-bottom: 5px;
+}
+
+.arrows {
+	position: relative;
+	width: 75%;
+}
+
+.arrow-left, .arrow-right, #videoList div img {
+	cursor: pointer;
+}
+
+.arrow-left, .arrow-right{
+	background-color: white;
+	color: url('mochaGrunge.png');	
+	margin: 15px;	
+	position: absolute;
+	top: -100px;
+}
+
+.arrow-left {
+	left: -25px;
+}
+
+.arrow-right {
+	right: -25px;
+}
