@@ -7,6 +7,6 @@
 <ul>
   <li>You can scroll left and right to pan through the 30 videos.</li>
   <li>You can also click on any of the videos within the display bar and they will start playing in the main video player.</li>
-<ul>
+</ul>
 
 <p>App was tested in Safari, Chrome and FireFox.</p>
