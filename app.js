@@ -31,7 +31,6 @@ app.service('VideosService', ['$window', function($window) {
   $window.onYouTubeIframeAPIReady = function() {
     new YT.Player('player', {
       playerVars: {
-        autohide: 2,
         controls: 2,
         playsinline: 1
       }
