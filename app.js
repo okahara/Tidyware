@@ -1,13 +1,5 @@
 var app = angular.module('app', []);
 
-// Loads the selected video from the Video bar into the main position
-function loadVideo(playerUrl, autoplay) {
-  swfobject.embedSWF(
-      playerUrl + '&rel=1&border=0&fs=1&autoplay=' + 
-      (autoplay?1:0)+'&autohide=1', 'player', '640', '390', '9.0.0', false, 
-      false, {allowfullscreen: 'true'});
-}
-
 // Creates the content for the Video bar
 function showMyVideos (data, $http) {
   var feed = data.feed;
@@ -16,17 +8,14 @@ function showMyVideos (data, $http) {
   for (var i = 1; i < entries.length; i++) {
     var entry = entries[i];
     var title = entry.title.$t.substr(0, 20);
-    var thumbnailUrl = entries[i].media$group.media$thumbnail[0].url;
-    var playerUrl = entries[i].media$group.media$content[0].url;
-    html.push('<div onclick="loadVideo(\'', playerUrl, '\', true)">',
+    var thumbnailUrl = entry.media$group.media$thumbnail[0].url;
+    var playerUrl = entry.media$group.yt$videoid.$t;
+    html.push('<div class="video" ng-click="loadVideo(\'', playerUrl, '\')">',
               '<span class="titlec">', title, '...</span> <img src="', 
               thumbnailUrl, '" width="128" height="78""/>', '</div>');
     }
     html.push('</div>');
     document.getElementById('videos').innerHTML = html.join('');
-    if (entries.length > 0) {
-      loadVideo(entries[0].media$group.media$content[0].url, false);
-    }
     videoBox = document.getElementById('videoList');
     video = document.querySelector('#videoList div');
     videoBox.style.width = (entries.length * video.offsetWidth) + "px";
@@ -38,13 +27,9 @@ app.service('VideosService', ['$window', function($window) {
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
   var player;
   $window.onYouTubeIframeAPIReady = function() {
-    player = new YT.Player('player', {
-      height: '390',
-      width: '640',
-      videoId: 'mkMVyw-7avI',
+    new YT.Player('player', {
       playerVars: {
         autohide: 2,
         controls: 2,
@@ -54,8 +39,12 @@ app.service('VideosService', ['$window', function($window) {
   }
 }]);
 
-// Controlls moving the Video bar display left or right
+// Controlls functionality of the Video bar including left and right sliding and the onclick event
 app.controller('VideosController', function ($scope, $http, $log, VideosService) {
+   $scope.loadVideo = function(id){
+    document.getElementById('player').src = "https://www.youtube.com/embed/"+ id +"?autoplay=1&html5=1&origin=//travisokahara.com"
+  }
+
   vidContainer = document.getElementById('videoList');  
   video = document.querySelector('#videoList div');
   var padding = ((video.offsetWidth - parseInt(window.getComputedStyle(video).width)) * 2);
@@ -83,4 +72,4 @@ app.controller('VideosController', function ($scope, $http, $log, VideosService)
       left: pos+'px'
     }   
   };
-});
+ });

@@ -26,11 +26,6 @@ body {
 	width: 70%;
 }
 
-#player {
-	height: 75%;
-	width: 100%;
-}
-
 #videoList {
 	background-image: url('mochaGrunge.png');
 	left: 0;
@@ -55,7 +50,7 @@ body {
 #videoList div img {
 	width: 128px;
 	height: 97px;
-	padding-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .arrows {
